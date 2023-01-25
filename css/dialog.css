@@ -1,0 +1,109 @@
+    .date-dialog {
+        background-color: #1A2226;
+        color: #fff;
+        border: 2px solid #0DB8DE;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .date-dialog h5 {
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        font-size: 26px;
+        text-align: center;
+        margin: 0px;
+    }
+
+    .btn-close {
+        background-color: #6c757d;
+        border-color: #0DB8DE;
+        color: #fff !important;
+        border-radius: 10px;
+        margin-right: 5px;
+    }
+
+    .modal-header {
+        border-bottom: 0;
+        margin: 0px;
+    }
+
+    .modal-body {
+        margin: 0px;
+        background-color: #1A2226;
+        color: #fff;
+        border: 0px solid #0DB8DE;
+        border-radius: 10px;
+    }
+
+    .modal-body input {
+        background-color: #1A2226;
+        color: #fff;
+        border: 2px solid #0DB8DE;
+        border-radius: 10px;
+    }
+
+    .modal-body input:focus {
+        background-color: #1A2226;
+        color: #fff;
+        border: 2px solid #0DB8DE;
+        border-radius: 10px;
+    }
+
+    .modal-body label {
+        color: #fff;
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .modal-body input::placeholder {
+        color: #fff;
+    }
+
+    .modal-body input::-webkit-input-placeholder {
+        color: #fff;
+    }
+
+    .modal-footer {
+        border-top: 1px solid #0DB8DE;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .btn-primary {
+        background-color: #1A2226;
+        border-color: #0DB8DE;
+        color: #fff;
+        border-radius: 10px;
+        height: 44px;
+        width: 48%;
+        --bs-btn-bg: #0DB8DE;
+        --bs-btn-border-color: #0DB8DE;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #0DB8DE;
+        --bs-btn-hover-border-color: #0DB8DE;
+        --bs-btn-focus-shadow-rgb: 49, 132, 253;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #0DB8DE;
+        --bs-btn-active-border-color: #0DB8DE;
+        --bs-btn-active-shadow: inset 0 3px 5pxrgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #0DB8DE;
+        --bs-btn-disabled-border-color: #0DB8DE;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #0DB8DE;
+        color: #fff;
+        border-radius: 10px;
+        height: 44px;
+        width: 48%
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: center;
+    }

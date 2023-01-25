@@ -1,0 +1,122 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "verify": true,
+      "fName": "System",
+      "lName": "Admin",
+      "age": "25",
+      "email": "sooasdminsooo@gmail.com",
+      "userName": "admin770",
+      "password": "123456",
+      "address": " 1234 5th Ave, New York, NY 10001",
+      "type": "admin"
+    },
+    {
+      "fName": "Security",
+      "lName": "1",
+      "address": "mansoura",
+      "email": "security1@gmail.com",
+      "age": "22",
+      "type": "security",
+      "verify": true,
+      "userName": "@Security1",
+      "password": "123456",
+      "id": 2
+    },
+    {
+      "fName": "Security",
+      "lName": "2",
+      "address": "mansoura",
+      "email": "security2@gmail.com",
+      "age": "20",
+      "type": "security",
+      "verify": true,
+      "userName": "@Security2",
+      "password": "123456",
+      "id": 3
+    },
+    {
+      "fName": "nada",
+      "lName": "elhakim",
+      "address": "mansoura",
+      "email": "nada@gmail.com",
+      "age": "25",
+      "type": "employee",
+      "verify": true,
+      "userName": "@nada",
+      "password": "123456",
+      "id": 4
+    },
+    {
+      "fName": "sohaila",
+      "lName": "mohamed",
+      "address": "mansoura",
+      "email": "sohilaalhakim@gmail.com",
+      "age": "22",
+      "type": "employee",
+      "verify": false,
+      "userName": "@sohaila",
+      "password": "123456",
+      "id": 6
+    },
+    {
+      "fName": "mohamed",
+      "lName": "mohamed",
+      "address": "mansoura",
+      "email": "mo@gmail.com",
+      "age": "22",
+      "type": "security",
+      "verify": true,
+      "userName": "@mo",
+      "password": "123456",
+      "id": 7
+    },
+    {
+      "fName": "mahmoud",
+      "lName": "ahmed",
+      "address": "mahmoudmahmoudmahmoud",
+      "email": "mahmoud@yahoo.com",
+      "age": "22",
+      "type": "employee",
+      "verify": true,
+      "userName": "@8Yn4Vhy4",
+      "password": "v3j8Jp",
+      "id": 8
+    }
+  ],
+  "attendance": [
+    {
+      "userId": 3,
+      "date": "1/24/2023",
+      "arrival": "2:51:04 AM",
+      "leaving": "2:51:21 AM",
+      "status": "present",
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "date": "24/01/2023",
+      "arrival": "15:57:54",
+      "leaving": "",
+      "status": "present",
+      "id": 2
+    },
+    {
+      "userId": 3,
+      "date": "1/25/2023",
+      "arrival": "3:00:05 AM",
+      "leaving": "3:00:10 AM",
+      "status": "present",
+      "id": 3
+    },
+    {
+      "userId": 4,
+      "date": "1/25/2023",
+      "arrival": "10:39:13 PM",
+      "leaving": "10:40:15 PM",
+      "status": "present",
+      "id": 4
+    }
+  ]
+}
