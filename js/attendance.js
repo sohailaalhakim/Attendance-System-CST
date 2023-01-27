@@ -7,14 +7,14 @@ window.addEventListener("load", () => {
 
 
     //? attendance form submit event
-    document.getElementById("attendance-form").addEventListener('submit', function(e) {
+    document.getElementById("attendance-form").addEventListener('submit', async function(e) {
         e.preventDefault();
         const data = Object.fromEntries(new FormData(e.target).entries());
         if (data.username == "") {
-            alert("Please enter username of employee to attend");
-            return;
+            customErrorAlert("Please enter username of employee to attend");
+
         } else {
-            attendEmployeeInDataBase(data);
+            await attendEmployeeInDataBase(data);
         }
     });
 
@@ -23,32 +23,33 @@ window.addEventListener("load", () => {
 
 //? attend employee in database
 async function attendEmployeeInDataBase(data) {
-    const currentUser = await getUserByUsername(data.username); 
+    const currentUser = await getUserByUsername(data.username);
     const date = new Date().toLocaleDateString();
-    console.log(currentUser,'currentUser')
+    console.log(currentUser, 'currentUser')
     const attendanceofUser = await getAttendanceByUserIdAndDate(currentUser.id, date);
     if (currentUser.verify == false || currentUser.type == "security") {
-        alert("You can't attend this user");
+        customWarningAlert("You can't attend this user");
         return;
     } else {
         if (attendanceofUser == undefined) {
             if (data.status == "leaving") {
-                alert("You can't leave before arrival");
+                customWarningAlert("You can't leave before arrival");
                 return;
             }
-            addAttendance(data, currentUser);
+            await addAttendance(data, currentUser);
         } else {
             if (data.status == "present") {
-                alert("You can't attend twice");
+                customErrorAlert("You can't attend twice");
                 return;
             } else if (data.status == "leaving" && attendanceofUser.leaving != "") {
-                alert("You can't leave twice");
+                customErrorAlert("You can't leave twice");
                 return;
             } else if (data.status == "absent") {
-                alert("You can't absent user is already attended");
+                customWarningAlert("You can't be absent user is already attended");
+
                 return;
             }
-            editAttendance(attendanceofUser.id);
+            await editAttendance(attendanceofUser.id);
         }
     }
 }
@@ -73,13 +74,17 @@ async function addAttendance(data, user) {
             status: "absent"
         }
     }
-    let res = addAttendanceApi(attendance);
+
+    const res = await addAttendanceApi(attendance);
     if (res) {
-        alert("Employee Attendance successfully");
-        document.getElementById("attendance-form").reset();
+        // document.getElementById("attendance-form").reset();
+        await customSuccessAlert({ title: "Employee Attendance successfully", timer: 20000 });
+
+        // cancel reload page
+
         return;
     } else {
-        throw new alert("Error in attendance");
+        throw new customErrorAlert("Error in attendance");
     }
 }
 
@@ -87,11 +92,12 @@ async function addAttendance(data, user) {
 //? edit employee attendance function patch request
 async function editAttendance(attendanceId) {
     var attendance = { leaving: new Date().toLocaleTimeString() };
-    let res = updateAttendance(attendanceId, attendance);
+    let res = await updateAttendance(attendanceId, attendance);
     if (res) {
-        alert("Employee Leaving successfully");
-        document.getElementById("attendance-form").reset();
+        // document.getElementById("attendance-form").reset();
+        await customSuccessAlert({ title: "Employee Attendance successfully", timer: 20000 });
+        return;
     } else {
-        throw new alert("Error in leaving");
+        throw new customErrorAlert("Error in leaving");
     }
 }

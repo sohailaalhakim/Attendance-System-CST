@@ -1,3 +1,8 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
 .card {
     border: 1px solid #1A2226;
     background-color: #1A2226;
@@ -84,4 +89,8 @@ label {
     right: 0.5em;
     top: 50%;
     margin-top: 2.5px;
+}
+
+.swal2-timer-progress-bar {
+    background-color: #fff;
 }

@@ -74,10 +74,10 @@
  // login post
  async function LoginPost(data) {
      if (await isPasswordCorrect(data.userName, data.password)) {
-         // navigate to home page 
+         await customSuccessAlert({ title: "Login Success", time: 500 });
          window.location.href = "http://127.0.0.1:5500/index.html";
      } else {
-         alert("Invalid username or password.");
+         customErrorAlert("Invalid username or password.");
      }
  }
 

@@ -1,5 +1,9 @@
 $(document).ready(function() {
     getDataForDatatables();
+
+    $("#itemContainer").click(function(e){
+        $("#itemContainer").hide();
+    })
 });
 
 function getDataForDatatables() {

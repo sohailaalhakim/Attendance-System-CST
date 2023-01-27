@@ -1,14 +1,14 @@
 //? Local Storage
 
+//TODO:: set local storage data
+function setLocalStorageData(data) {
+    localStorage.setItem("userData", JSON.stringify(data));
+}
+
 //TODO:: get local storage data
 function getLocalStorageData() {
     const data = JSON.parse(localStorage.getItem("userData"));
     return data;
-}
-
-//TODO:: set local storage data
-function setLocalStorageData(data) {
-    localStorage.setItem("userData", JSON.stringify(data));
 }
 
 //TODO:: get user name from local storage
@@ -151,10 +151,12 @@ async function updateUser(id, data) {
 
 //TODO:: delete user
 async function deleteUser(id) {
+    event.preventDefault();
     try {
         const response = await fetch(`http://localhost:3000/users/${id}`, { method: "DELETE" });
         if (response.ok) {
             const user = await response.json();
+
             return user;
         } else {
             throw new Error(response.statusText);
@@ -269,11 +271,56 @@ async function getAttendanceByUserId(id) {
     }
 }
 
+//TODO:: get Daily Report By Date
+async function getDailyReportByDate(date) {
+    try {
+        const response = await fetch(`http://localhost:3000/attendance?date=${date}`);
+        if (response.ok) {
+            const attendance = await response.json();
+            return attendance;
+        } else {
+            throw new Error(response.statusText);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 //TODO:: get attendance by user id and date
 async function getAttendanceByUserIdAndDate(id, date) {
     try {
         const response = await fetch(`http://localhost:3000/attendance?userId=${id}&date=${date}`);
+        if (response.ok) {
+            const attendance = await response.json();
+            return attendance[0];
+        } else {
+            throw new Error(response.statusText);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//TODO:: get first attendance 
+async function getFirstAttendance() {
+    try {
+        const response = await fetch("http://localhost:3000/attendance?_sort=date&_order=asc&_limit=1");
+        if (response.ok) {
+            const attendance = await response.json();
+            return attendance[0];
+        } else {
+            throw new Error(response.statusText);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+//TODO:: get last attendance
+async function getLastAttendance() {
+    try {
+        const response = await fetch("http://localhost:3000/attendance?_sort=date&_order=desc&_limit=1");
         if (response.ok) {
             const attendance = await response.json();
             return attendance[0];
@@ -326,4 +373,85 @@ async function displayAttendanceTabNav() {
     if (userType == "admin" || userType == "security") {
         reAttendance.style.display = "block";
     }
+}
+
+////--------------------------------------------------------------////
+
+//Todo:: custom sweet alert
+
+async function customSuccessAlert({ title, time, funtion, showConfirmButton, confirmFunction }) {
+    const Toast = Swal.mixin({
+        toast: true,
+        background: "#73B575",
+        color: "#fff",
+        timerProgressBar: true,
+        position: 'bottom-right',
+        showConfirmButton: showConfirmButton == undefined ? false : showConfirmButton,
+        timer: time == undefined ? 3000 : time,
+        timerProgressBar: true,
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#fff",
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        },
+
+    });
+    await Toast.fire({
+        icon: "success",
+        iconcolor: "#fff",
+        title: title,
+    }).then((res) => {
+        if (funtion != undefined) {
+            funtion();
+        }
+        if (res.isConfirmed && confirmFunction != undefined) {
+            confirmFunction();
+        }
+    });
+}
+
+function customErrorAlert(title, text) {
+    const Toast = Swal.mixin({
+        toast: true,
+        background: "#B73730",
+        color: "#fff",
+        timerProgressBar: true,
+        position: 'bottom-right',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+    Toast.fire({
+        icon: "error",
+        iconcolor: "#fff",
+        title: title,
+    });
+}
+
+
+function customWarningAlert(title, text) {
+    const Toast = Swal.mixin({
+        toast: true,
+        background: "#F7941D",
+        color: "#fff",
+        timerProgressBar: true,
+        position: 'bottom-right',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+    Toast.fire({
+        icon: "warning",
+        iconcolor: "#fff",
+        title: title,
+    });
 }

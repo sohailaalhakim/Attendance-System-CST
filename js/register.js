@@ -88,7 +88,7 @@ function isAgeValid() {
 //Register data 
 async function RegisterPost(data) {
     if (await isUserExist(data.email)) {
-        alert("E-mail User already exist");
+        customErrorAlert("E-mail User already exist");
         return;
     } else {
         console.log(data);
@@ -116,13 +116,20 @@ async function RegisterPost(data) {
             redirect: "follow",
         };
 
-        fetch("http://localhost:3000/users", requestOptions)
-            .then((response) => response.text())
-            .then((result) => {
-                alert("User added successfully");
-                window.location.href = "login.html";
-            })
-            .catch((error) => console.log("error", error));
+        const response = await fetch("http://localhost:3000/users", requestOptions);
+        const result = await response.json();
+        console.log(result);
+        if (result) {
+            await customSuccessAlert({
+                title: "User created successfully",
+                showConfirmButton: true,
+                confirmFunction: () => {
+                    window.location.href = "login.html";
+                }
+            });
+        } else {
+            customErrorAlert("Error creating user");
+        }
     }
 }
 

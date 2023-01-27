@@ -16,14 +16,18 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.22/datatables.min.css" />
+    <link rel="stylesheet" href="path/to/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
 
     <!-- bottom nav -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
 
-    
-    
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
 
@@ -49,6 +53,7 @@
 
 <body>
 
+    <!--? navbar   -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary ">
         <div class="container-fluid ">
             <a class="navbar-brand " href="# ">Attendance System</a>
@@ -68,7 +73,9 @@
                         <a class="nav-link" href="./attendance.html">Attendance</a>
                     </li>
 
+
                 </ul>
+
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="user-name" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
@@ -82,12 +89,59 @@
 
         </div>
     </nav>
+    <!--? Show date picker dialog-->
+    <div class="modal fade" id="date-picker-dialog" tabindex="-1" aria-labelledby="date-picker-dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content date-dialog">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Select Date</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col">
+                        <label for="date-of-day" class="form-label label-date-of-day">Date of the day</label>
+                        <input type="date" class="form-control" id="date-of-day">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="saveChangeDailyReport()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!--? Show date range picker dialog-->
+    <div class="modal fade" id="date-range-picker-dialog" tabindex="-1" aria-labelledby="date-range-picker-dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content date-dialog">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Date Range Picker</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <label for="start-date" class="form-label label-start-date">Start Date</label>
+                            <input type="date" class="form-control" id="start-date">
+                        </div>
+                        <div class="col end-date-input-group">
+                            <label for="end-date" class="form-labe label-end-date">End Date</label>
+                            <input type="date" class="form-control" id="end-date">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="saveChangeMonthlyReport()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--?---------------------------------------------------------------->
     <!--!--------------------------- Admin--------------------------- -->
     <!--?---------------------------------------------------------------->
-
 
     <!--? table of pending employee-->
     <div class="container " id="pendingContainer" style="display: none; ">
@@ -144,43 +198,16 @@
     <!--?---------------------------------------------------------------->
 
     <!--? table of daily attendence employee -->
-    <div class="container " id="allDailyEmpContainer">
+    <div class="container " id="allDailyEmpContainer" style="display: none; ">
         <div class="sizeBox-medium"></div>
         <div class="row">
             <h3 class="col">All Employee's Daily Report </h3>
-            <button type="button" id="showAllDailyRangePicker" class="dateBtn col btn btn-primary" data-bs-toggle="modal" data-bs-target="#date-range-picker-dialog">
+            <button type="button" id="showAllDailyDatePicker" class="dateBtn col btn btn-primary" data-bs-toggle="modal" data-bs-target="#date-picker-dialog">
                 Date Picker
             </button>
-
-            <div class="modal fade" id="date-range-picker-dialog" tabindex="-1" aria-labelledby="date-range-picker-dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content date-dialog">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Date Range Picker</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="start-date" class="form-label label-start-date">Start Date</label>
-                                    <input type="date" class="form-control" id="start-date">
-                                </div>
-                                <div class="col end-date-input-group">
-                                    <label for="end-date" class="form-labe label-end-date">End Date</label>
-                                    <input type="date" class="form-control" id="end-date">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="getMonthlyReport()">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="table-box ">
-            <table class="table " id="allDailyEmpTable">
+            <table id="allDailyEmpTable" class="display " cellspacing="0 " width="100% ">
                 <thead>
                     <tr>
                         <th scope="col ">#</th>
@@ -200,43 +227,16 @@
     <!--?---------------------------------------------------------------->
 
     <!--? table of monthly attendence employee -->
-    <div class="container " id="allMonthlyEmpContainer">
+    <div class="container " id="allMonthlyEmpContainer" style="display: none; ">
         <div class="sizeBox-medium"></div>
         <div class="row">
             <h3 class="col">All Employee's Monthly Report </h3>
             <button type="button" id="showAllMonthlyRangePicker" class="dateBtn col btn btn-primary" data-bs-toggle="modal" data-bs-target="#date-range-picker-dialog">
                 Date Picker
             </button>
-
-            <div class="modal fade" id="date-range-picker-dialog" tabindex="-1" aria-labelledby="date-range-picker-dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content date-dialog">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Date Range Picker</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="start-date" class="form-label label-start-date">Start Date</label>
-                                    <input type="date" class="form-control" id="start-date">
-                                </div>
-                                <div class="col end-date-input-group">
-                                    <label for="end-date" class="form-labe label-end-date">End Date</label>
-                                    <input type="date" class="form-control" id="end-date">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="getMonthlyReport()">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="table-box ">
-            <table class="table " id="allMonthlyEmpTable">
+            <table id="allUserMonthlyEmpTable" class="display " cellspacing="0 " width="100% ">
                 <thead>
                     <tr>
                         <th scope="col ">#</th>
@@ -261,8 +261,14 @@
     <!--? table of daily attendence employee -->
     <div class="container " id="dailyEmpContainer" style="display: none; ">
         <div class="sizeBox-medium"></div>
-        <h3> Daily's Report </h3>
+        <div class="row">
+            <h3 class="col">Daily Report </h3>
+            <button type="button" id="showDailyDatePicker" class="dateBtn col btn btn-primary" data-bs-toggle="modal" data-bs-target="#date-picker-dialog">
+                Date Picker
+            </button>
+        </div>
         <div class="table-box ">
+            <!-- <table id="dailyEmpTable" class="display " cellspacing="0 " width="100% "> -->
             <table class="table " id="dailyEmpTable">
                 <thead>
                     <tr>
@@ -286,40 +292,14 @@
     <div class="container " id="monthlyEmpContainer" style="display: none;">
         <div class="sizeBox-medium"></div>
         <div class="row">
-            <h3 class="col"> Daily's Report </h3>
+            <h3 class="col"> Monthly's Report </h3>
             <button type="button" id="showRangePicker" class="dateBtn col btn btn-primary" data-bs-toggle="modal" data-bs-target="#date-range-picker-dialog">
                 Date Picker
             </button>
 
-            <div class="modal fade" id="date-range-picker-dialog" tabindex="-1" aria-labelledby="date-range-picker-dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content date-dialog">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Date Range Picker</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="start-date" class="form-label label-start-date">Start Date</label>
-                                    <input type="date" class="form-control" id="start-date">
-                                </div>
-                                <div class="col end-date-input-group">
-                                    <label for="end-date" class="form-labe label-end-date">End Date</label>
-                                    <input type="date" class="form-control" id="end-date">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="getMonthlyReport()">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="table-box ">
-            <table class="table " id="monthlyEmpTable">
+            <table id="monthlyEmpTable" class="display " cellspacing="0 " width="100% ">
                 <thead>
                     <tr>
                         <th scope="col ">#</th>
