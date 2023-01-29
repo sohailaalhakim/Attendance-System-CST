@@ -3,22 +3,6 @@ window.addEventListener("load", () => {
     getUserNameLocalStorage();
     displayAttendanceTabNav();
 
-    const tabs = document.querySelectorAll('.tab');
-tabs.forEach(tab => {
-  tab.addEventListener('click', function() {
-    const tabContent = document.getElementById(this.id.replace('tab-', ''));
-    tabs.forEach(tab => {
-      tab.classList.remove('active');
-      document.querySelectorAll('.tab-content').forEach(tabContent => {
-        tabContent.classList.remove('active');
-      });
-    });
-    this.classList.add('active');
-    tabContent.classList.add('active');
-  });
-});
-
-
 
     //admin tables
     displaypendingTable();
