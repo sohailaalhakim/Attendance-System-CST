@@ -111,9 +111,9 @@ TODO
 - [Font Awesome](https://fontawesome.com/)
   - Get vector icons and social logos on your website with Font Awesome, the web's most popular icon set and toolkit.
   
-## Authors
+<!-- ## Authors
 
-- [Sohaila Elhakim](https://github.com/sohailaalhakim)
+- [Sohaila Elhakim](https://github.com/sohailaalhakim) -->
 
 <!-- ## License
 
