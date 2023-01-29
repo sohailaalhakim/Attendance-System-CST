@@ -232,3 +232,40 @@ button {
     margin-right: 38px;
     margin-bottom: 20px;
 }
+
+/* ?------------------------------------------------------------------ */
+/* ?------------------------------------------------------------------ */
+
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #f1f1f1;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .tab-content {
+    display: none;
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+  
+  .tab {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #ddd;
+    text-align: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .tab:hover {
+    background-color: #ccc;
+  }
