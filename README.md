@@ -96,7 +96,7 @@ TODO
 - [JavaScript](https://www.javascript.com/)
     - ES6
     - AJAX
-    -Local Storage
+    - Local Storage
 - [Bootstrap](https://getbootstrap.com/)
 - [jQuery](https://jquery.com/)
 - [JSON Server](https://www.npmjs.com/package/json-server)
