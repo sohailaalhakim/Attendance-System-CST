@@ -55,7 +55,7 @@
       "email": "sohilaalhakim@gmail.com",
       "age": "22",
       "type": "employee",
-      "verify": false,
+      "verify": true,
       "userName": "@sohaila",
       "password": "123456",
       "id": 6
@@ -117,6 +117,14 @@
       "leaving": "10:40:15 PM",
       "status": "present",
       "id": 4
+    },
+    {
+      "userId": 6,
+      "date": "1/31/2023",
+      "arrival": "6:06:18 PM",
+      "leaving": "6:06:22 PM",
+      "status": "present",
+      "id": 5
     }
   ]
 }
