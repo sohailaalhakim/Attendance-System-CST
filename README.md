@@ -55,13 +55,13 @@ git clone <https://github.com/sohailaalhakim/attendance-system.git>
 
 ### User
 
-1. Register an account and waite acception
+1. Register an account and wait an acception
 from admin or login if you already have one.
-2. Tell your admin to accept your account.
+2. Wait for admin to accept your account.
 3. Then you can login and view your daily and monthly attendance records.
-4. Tell your admin or SubAdmin to assign attendance for you.
+4. Your admin or SubAdmin  assign attendance for you.
 5. Check your attendance status and coming time.
-6. Viw your profile name, email, address, etc.
+6. View your profile name, email, address, etc.
 7. Logout.
 
 ### SubAdmin
@@ -111,9 +111,9 @@ TODO
 - [Font Awesome](https://fontawesome.com/)
   - Get vector icons and social logos on your website with Font Awesome, the web's most popular icon set and toolkit.
   
-<!-- ## Authors
+## Authors
 
-- [Sohaila Elhakim](https://github.com/sohailaalhakim) -->
+- [Sohaila Elhakim](https://github.com/sohailaalhakim)
 
 <!-- ## License
 
