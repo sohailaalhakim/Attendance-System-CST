@@ -43,13 +43,13 @@ git clone <https://github.com/sohailaalhakim/attendance-system.git>
   json-server --watch db.json
   ```
 
-<!-- 4. Start the development server by running
+4. Start the development server by running
 
   ```yaml
-  npm start -->
+  npm start
   ```
 
-4. Run the application
+5. Run the application
 
 ## Usage
 
